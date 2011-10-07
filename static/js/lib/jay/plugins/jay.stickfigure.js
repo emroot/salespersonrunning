@@ -27,11 +27,13 @@
 			if(options)
 				$.extend(true, this.settings, options);
 			
-			this.$element = $("<div>").addClass("jay-stickfigure");	
+			this.$element = $("<div>").addClass("jay-stickfigure");
 			this.$head = $("<img>").addClass("jay-stickfigure-head").attr("src", this.settings.img);
-			this.$body = $("<div>").addClass("jay-stickfigure-body").css({
-				"background-image": "url(/static/img/guy-sprite.png)"
-			});
+			this.$head.css("width", this.settings.headSize);
+			this.$head.css("left", this.settings.headLeft);
+			this.$head.css("top", this.settings.headTop);
+			this.$body = $("<div>").addClass("jay-stickfigure-body");
+								
 			
 			this.leftArm = new Arm(this.$element, "left");
 			this.rightArm = new Arm(this.$element, "right");
@@ -39,6 +41,8 @@
 			this.rightLeg = new Leg(this.$element, "right");
 			
 			this.$element.append(this.$head, this.$body, this.leftArm, this.rightArm, this.leftLeg, this.rightLeg);
+			this.$element.css("left", this.settings.leftPos);
+			this.$element.css("top", this.settings.topPos);
 			//$this.$backdrop.one(transitionEnd, removeElement);
 			
 			this.$body = $(document.body);
