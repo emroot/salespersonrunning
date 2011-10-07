@@ -1,0 +1,68 @@
+(function(Jay, $){
+	var transitionEnd;
+	$.support.transition = (function (){
+		var thisBody = document.body || document.documentElement,
+		    thisStyle = thisBody.style,
+		    support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
+		    return support
+ 	})();
+
+	if ($.support.transition) {
+		transitionEnd = "TransitionEnd"
+		if ($.browser.webkit) {
+			transitionEnd = "webkitTransitionEnd"
+		} else if ($.browser.mozilla) {
+			transitionEnd = "transitionend"
+		} else if ($.browser.opera) {
+			transitionEnd = "oTransitionEnd"
+		}
+	};
+	
+	var stickfigure = Jay.StickFigure = Jay.Klass({
+		constructor: function(options){
+			this.settings = {
+				name: "",
+				img: ""
+			}
+			if(options)
+				$.extend(true, this.settings, options);
+			
+			this.$element = $("<div>").addClass("jay-stickfigure");	
+			this.$head = $("<img>").addClass("jay-stickfigure-head").attr("src", this.settings.img);
+			this.$body = $("<div>").addClass("jay-stickfigure-body").css({
+				"background-image": "url(/static/img/guy-sprite.png)"
+			});
+			
+			this.leftArm = new Arm(this.$element, "left");
+			this.rightArm = new Arm(this.$element, "right");
+			this.leftLeg = new Leg(this.$element, "left");
+			this.rightLeg = new Leg(this.$element, "right");
+			
+			this.$element.append(this.$head, this.$body, this.leftArm, this.rightArm, this.leftLeg, this.rightLeg);
+			//$this.$backdrop.one(transitionEnd, removeElement);
+			
+			this.$body = $(document.body);
+			this.$body.append(this.$element);
+		},
+		run: function(){
+			
+		}
+	});
+	
+	var Arm = Jay.Klass({
+		constructor: function(element, type){
+			var type = (type == "left" ? "left" : "right");
+			this.$element = element;
+			this.$arm = $("<div>").addClass("jay-stickfigure-arm "+type).appendTo(this.$element);
+		}
+	});
+	
+	var Leg = Jay.Klass({
+		constructor: function(element, type){
+			var type = (type == "left" ? "left" : "right");
+			this.$element = element;
+			this.$arm = $("<div>").addClass("jay-stickfigure-leg "+type).appendTo(this.$element);
+		}
+	});
+	
+}(this.Jay = this.Jay || {}, jQuery));

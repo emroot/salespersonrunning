@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script type="text/javascript" src="/static/js/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/lib/jay/jay.js"></script>
+	<script type="text/javascript" src="/static/js/lib/jay/plugins/jay.stickfigure.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var brett = new Jay.StickFigure({
+				name: "Jason",
+				img: "/static/img/faces/brett.png"
+			});
+		});
+	</script>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding:0;
+			overflow:hidden;
+		}
+		.moving-bg{
+			background-image: url(/static/img/bg.png);
+			background-position: 0 -10%;
+			background-repeat:no-repeat;
+			position:absolute;
+			width:1000px;
+			height:704px;
+			bottom:0;
+			-webkit-transition: 5s linear all;
+			-moz-transition: 5s linear all;
+			-ms-transition: 5s linear all;
+			-o-transition: 5s linear all;
+			transition: 5s linear all;
+		}
+		.moving-bg.first.move{
+			left:-1000px;
+		}
+		.moving-bg.middle.move{
+			left:0px;
+		}
+		.moving-bg.middle{
+			left:1000px;
+		}
+		.moving-bg.last.move{
+			left:1000px;
+		}
+		.moving-bg.last{
+			left:2000px;
+		}
+		.jay-stickfigure{
+			position:absolute;
+			bottom:200px;
+			left:50%;
+		}
+		.jay-stickfigure-head{
+			width:70px;
+			z-index:100;
+			position:absolute;
+			-webkit-transition: .1s;
+			-webkit-transform: rotate(-10deg);
+			-webkit-transform-origin:50% 100%;
+		}
+		.jay-stickfigure.step .jay-stickfigure-head{
+			-webkit-transform: rotate(10deg);
+		}
+		.jay-stickfigure-body{
+			width: 9px;
+			height: 60px;
+			position: absolute;
+			top: 85px;
+			left: 35px;
+			background-position: 0;
+		}
+		.jay-stickfigure-arm{
+			background-image: url(/static/img/guy-sprite.png);
+			background-repeat:no-repeat;
+			width: 51px;
+			height: 34px;
+			background-position: -26px -15px;
+			position: absolute;
+			top: 95px;
+			left: 38px;
+			-webkit-transition: .2s;
+			-webkit-transform-origin:0 0;
+			
+		}
+		.jay-stickfigure-arm.right{
+			-webkit-transform: rotate(-10deg);
+		}
+		.jay-stickfigure-arm.left{
+			-webkit-transform: rotate(-40deg);
+		}
+		.jay-stickfigure.step .jay-stickfigure-arm.right{
+			-webkit-transform: rotate(-40deg);
+		}
+		.jay-stickfigure.step .jay-stickfigure-arm.left{
+			-webkit-transform: rotate(-10deg);
+		}
+		.jay-stickfigure-leg{
+			background-image: url(/static/img/guy-sprite.png);
+			background-repeat: no-repeat;
+			width: 11px;
+			height: 54px;
+			background-position: -11px -2px;
+			position: absolute;
+			top: 136px;
+			left: 30px;
+			-webkit-transition: .2s;
+			-webkit-transform: rotate(-10deg);
+			-webkit-transform-origin:0 0;
+		}
+		.jay-stickfigure-leg.right{
+			-webkit-transform: rotate(10deg);
+			-webkit-transform-origin:0 0;
+		}
+		.jay-stickfigure-leg.left{
+			-webkit-transform: rotate(-40deg);
+			-webkit-transform-origin:0 0;
+		}
+		.jay-stickfigure.step .jay-stickfigure-leg.right{
+			-webkit-transform: rotate(-40deg);
+		}
+		.jay-stickfigure.step .jay-stickfigure-leg.left{
+			-webkit-transform: rotate(10deg);
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+	var transitionEnd;
+	$.support.transition = (function (){
+		var thisBody = document.body || document.documentElement,
+		    thisStyle = thisBody.style,
+		    support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
+		    return support
+ 	})();
+
+	if ($.support.transition) {
+		transitionEnd = "TransitionEnd"
+		if ($.browser.webkit) {
+			transitionEnd = "webkitTransitionEnd"
+		} else if ($.browser.mozilla) {
+			transitionEnd = "transitionend"
+		} else if ($.browser.opera) {
+			transitionEnd = "oTransitionEnd"
+		}
+	};
+	$(document).ready(function(){
+		var $container = $(".jay-stickfigure");
+			setInterval(function(){
+				$container.hasClass("step") ? $container.removeClass("step") : $container.addClass("step");
+			}, 200);	
+		$(".moving-bg").animate({left: "-=1000px"}, 5000, function(){});
+	});
+	function animate(){
+	}
+	</script>
+	<div class="moving-bg first"></div>
+	<div class="moving-bg middle"></div>
+	<div class="moving-bg last"></div>
+</body>
+</html>
