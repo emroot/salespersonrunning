@@ -4,7 +4,6 @@
 	<script type="text/javascript" src="static/js/lib/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="static/js/lib/jay/jay.js"></script>
 	<script type="text/javascript" src="static/js/lib/jay/plugins/jay.stickfigure.js"></script>
-	<script type="text/javascript" src="static/js/sampledata.js">
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var ashwin = new Jay.StickFigure({
@@ -163,7 +162,6 @@
 			for(var person in data){
 				//figure_map[person] 
 			}
-			
 		});
 	</script>
 	<style type="text/css">
@@ -180,6 +178,8 @@
 			width:1000px;
 			height:704px;
 			bottom:0;
+		}
+		.animated{
 			-webkit-transition: 5s linear all;
 			-moz-transition: 5s linear all;
 			-ms-transition: 5s linear all;
@@ -277,6 +277,31 @@
 		.jay-stickfigure.step .jay-stickfigure-leg.left{
 			-webkit-transform: rotate(10deg);
 		}
+		.month{
+			font-size:80px;
+			font-family: "Helvetica Neue";
+			background:rgba(0, 0, 0, 0.6);
+			display:inline;
+			color:white;
+			padding:10px 30px;
+			border-radius:10px;
+			position:absolute;
+			top:10px;
+			left:30px;
+		}
+		.countdown{
+			width:160px;
+			position:absolute;
+			left:50%;
+			margin-left:-80px;
+			font-family: "Helvetica Neue";
+			background:#000;
+			color:white;
+			text-align:center;
+			font-size:80px;
+			border-radius:0 0 10px 10px;
+			display:none;
+		}
 	</style>
 </head>
 <body>
@@ -299,18 +324,59 @@
 			transitionEnd = "oTransitionEnd"
 		}
 	};
+	
 	$(document).ready(function(){
-		var $container = $(".jay-stickfigure");
-			setInterval(function(){
-				$container.hasClass("step") ? $container.removeClass("step") : $container.addClass("step");
-			}, 200);	
-		$(".moving-bg").animate({left: "-=1000px"}, 5000, function(){});
+		createCountDown();
 	});
-	function animate(){
+	
+	function createCountDown(){
+		var countdown = 3,
+			$countdown = $(".countdown").html(countdown);
+		$(".countdown").slideDown();
+		var int = setInterval(function(){
+			if(countdown == 0){
+				start();
+				clearInterval(int);
+				countdown = "GO!";
+				setTimeout(function(){
+					$countdown.slideUp();
+				}, 1000);
+			}
+			$countdown.html(countdown);
+			countdown-=1;
+		}, 1000);
 	}
+	
+	function start(){
+		var $container = $(".jay-stickfigure");
+		setInterval(function(){
+			$container.hasClass("step") ? $container.removeClass("step") : $container.addClass("step");
+		}, 200);	
+		$(".moving-bg").addClass("animated move");
+		setInterval(function(){
+			$(".moving-bg").one(transitionEnd, keep);
+		}, 5000);
+	}
+	
+	function keep(){
+		var $this = $(this);
+		$this.removeClass("animated move");
+		if($this.hasClass("first"))
+			$this.addClass("middle").removeClass("first");
+		else if($this.hasClass("middle"))
+			$this.addClass("last").removeClass("middle");
+		else if($this.hasClass("last"))
+			$this.addClass("first").removeClass("last");
+		setTimeout(function(){
+			$(".moving-bg").addClass("animated move");
+		}, 0)
+	}
+	
 	</script>
 	<div class="moving-bg first"></div>
 	<div class="moving-bg middle"></div>
 	<div class="moving-bg last"></div>
+	<div class='month'>January</div>
+	<div class='countdown'></div>
 </body>
 </html>

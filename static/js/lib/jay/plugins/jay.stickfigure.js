@@ -22,16 +22,19 @@
 		constructor: function(options){
 			this.settings = {
 				name: "",
-				img: ""
+				img: "",
+				bottom: 0,
+				left: 0
 			}
 			if(options)
 				$.extend(true, this.settings, options);
 			
-			this.$element = $("<div>").addClass("jay-stickfigure");	
+			this.$element = $("<div>").addClass("jay-stickfigure").css({
+				left: this.settings.left,
+				bottom: this.settings.bottom
+			});	
 			this.$head = $("<img>").addClass("jay-stickfigure-head").attr("src", this.settings.img);
-			this.$body = $("<div>").addClass("jay-stickfigure-body").css({
-				"background-image": "url(/static/img/guy-sprite.png)"
-			});
+			this.$body = $("<div>").addClass("jay-stickfigure-body");
 			
 			this.leftArm = new Arm(this.$element, "left");
 			this.rightArm = new Arm(this.$element, "right");
