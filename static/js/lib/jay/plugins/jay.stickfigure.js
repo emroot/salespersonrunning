@@ -36,7 +36,7 @@
 			this.$head.css("left", this.settings.headLeft);
 			this.$head.css("top", this.settings.headTop);
 			this.$body = $("<div>").addClass("jay-stickfigure-body");
-											
+
 			this.leftArm = new Arm(this.$element, "left");
 			this.rightArm = new Arm(this.$element, "right");
 			this.leftLeg = new Leg(this.$element, "left");
