@@ -4,166 +4,7 @@
 	<script type="text/javascript" src="static/js/lib/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="static/js/lib/jay/jay.js"></script>
 	<script type="text/javascript" src="static/js/lib/jay/plugins/jay.stickfigure.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			var ashwin = new Jay.StickFigure({
-				name: "Ashwin_Pampati",
-				leftPos: "20px",
-				topPos: "300px",
-				headSize: "60px",
-				headLeft: "7px",
-				headTop: "10px",
-				img: "static/img/faces/ashwin.png"
-			});
-			
-			var cori = new Jay.StickFigure({
-				name: "Cory_Retblatt",
-				leftPos: "50px",
-				topPos: "350px",
-				headSize: "85px",
-				headLeft: "-10px",
-				headTop: "16px",
-				img: "static/img/faces/cory.png"
-			});
-			
-			var danielle = new Jay.StickFigure({
-				name: "Danielle_Reiter",
-				leftPos: "100px",
-				topPos: "400px",
-				headSize: "62px",
-				headLeft: "7px",
-				headTop: "12px",
-				img: "static/img/faces/danielle.png"
-			});
-			var evan = new Jay.StickFigure({
-				name: "Evan_Hsieh",
-				leftPos: "140px",
-				topPos: "450px",
-				headSize: "68px",
-				headLeft: "7px",
-				headTop: "5px",
-				img: "static/img/faces/evan.png"
-			});
-			
-			var jeff = new Jay.StickFigure({
-				name: "Jeff_Valente",
-				leftPos: "180px",
-				topPos: "500px",
-				headSize: "75px",
-				headLeft: "7px",
-				headTop: "10px",
-				img: "static/img/faces/jeff.png"
-			});
-			var jeremy = new Jay.StickFigure({
-				name: "Mark",
-				leftPos: "220px",
-				topPos: "550px",
-				headSize: "70px",
-				headLeft: "7px",
-				img: "static/img/faces/jeremy.png"
-			});
-			
-			var kevin = new Jay.StickFigure({
-				name: "Kevin_Gianatiempo",
-				leftPos: "260px",
-				topPos: "600px",
-				headSize: "65px",
-				headLeft: "7px",
-				headTop: "5px",
-				img: "static/img/faces/kevin.png"
-			});
-			var melissa = new Jay.StickFigure({
-				name: "Melissa_",
-				leftPos: "20px",
-				topPos: "650px",
-				headSize: "70px",
-				headLeft: "10px",
-				headTop: "10px",
-				img: "static/img/faces/melissa.png"
-			});
-			
-			var lee = new Jay.StickFigure({
-				name: "Lee_Freund",
-				leftPos: "150px",
-				topPos: "350px",
-				headSize: "60px",
-				headLeft: "10px",
-				headTop: "10px",
-				img: "static/img/faces/lee.png"
-			});
-			
-			var marc = new Jay.StickFigure({
-				name: "Marc_Galens",
-				leftPos: "150px",
-				topPos: "350px",
-				headSize: "58px",
-				headLeft: "10px",
-				headTop: "5px",
-				img: "static/img/faces/marcgalens.png"
-			});
-			
-			var mark = new Jay.StickFigure({
-				name: "Mark_Roblat",
-				leftPos: "200px",
-				topPos: "400px",
-				headSize: "62px",
-				headLeft: "10px",
-				headTop: "5px",
-				img: "static/img/faces/mark.png"
-			});
-			
-			var mike = new Jay.StickFigure({
-				name: "Michael_Downs",
-				leftPos: "250px",
-				topPos: "450px",
-				headSize: "62px",
-				headLeft: "10px",
-				headTop: "5px",
-				img: "static/img/faces/mikedowns.png"
-			});
-			
-			var russell = new Jay.StickFigure({
-				name: "Russell_Barry",
-				leftPos: "300px",
-				topPos: "500px",
-				headSize: "68px",
-				headLeft: "10px",
-				headTop: "5px",
-				img: "static/img/faces/russell.png"
-			});
-			
-			var tony = new Jay.StickFigure({
-				name: "Tony_Paruszewski",
-				leftPos: "350px",
-				topPos: "550px",
-				headSize: "68px",
-				headLeft: "10px",
-				headTop: "5px",
-				img: "static/img/faces/tony.png"
-			});
-			
-			var figure_map = {
-				"Ashwin_Pampati": ashwin,
-				"Cori_Retblatt": cori,
-				"Danielle_Reiter": danielle,
-				"Evan_Hsieh": evan, 
-				"Jeff_Valente": jeff,
-				"Jeremy_Bloom": jeremy, 
-				"Kevin_Gianatiempo": kevin,
-				"Lee_Freund": lee, 
-				"Marc_Galens": marc, 
-				"Mark_Rotblat": mark,
-				"Melissa_Mandel": melissa,
-				"Michael_Downs": mike,
-				"Russell_Barry": russell,
-				"Tony_Paruszewski": tony
-			};
-			
-			for(var person in data){
-				//figure_map[person] 
-			}
-		});
-	</script>
+	<script type="text/javascript" src="static/js/sampledata.js"></script>
 	<style type="text/css">
 		body{
 			margin:0;
@@ -324,8 +165,162 @@
 			transitionEnd = "oTransitionEnd"
 		}
 	};
-	
+	var figure_map;
 	$(document).ready(function(){
+		var ashwin = new Jay.StickFigure({
+			name: "Ashwin_Pampati",
+			leftPos: "20px",
+			topPos: "300px",
+			headSize: "60px",
+			headLeft: "7px",
+			headTop: "10px",
+			img: "static/img/faces/ashwin.png"
+		});
+		
+		var cori = new Jay.StickFigure({
+			name: "Cory_Retblatt",
+			leftPos: "20px",
+			topPos: "350px",
+			headSize: "85px",
+			headLeft: "-10px",
+			headTop: "16px",
+			img: "static/img/faces/cory.png"
+		});
+		
+		var danielle = new Jay.StickFigure({
+			name: "Danielle_Reiter",
+			leftPos: "20px",
+			topPos: "400px",
+			headSize: "62px",
+			headLeft: "7px",
+			headTop: "12px",
+			img: "static/img/faces/danielle.png"
+		});
+		var evan = new Jay.StickFigure({
+			name: "Evan_Hsieh",
+			leftPos: "20px",
+			topPos: "450px",
+			headSize: "68px",
+			headLeft: "7px",
+			headTop: "5px",
+			img: "static/img/faces/evan.png"
+		});
+		
+		var jeff = new Jay.StickFigure({
+			name: "Jeff_Valente",
+			leftPos: "20px",
+			topPos: "500px",
+			headSize: "75px",
+			headLeft: "7px",
+			headTop: "10px",
+			img: "static/img/faces/jeff.png"
+		});
+		var jeremy = new Jay.StickFigure({
+			name: "Jeremy_Bloom",
+			leftPos: "20px",
+			topPos: "550px",
+			headSize: "70px",
+			headLeft: "7px",
+			img: "static/img/faces/jeremy.png"
+		});
+		
+		var kevin = new Jay.StickFigure({
+			name: "Kevin_Gianatiempo",
+			leftPos: "20px",
+			topPos: "600px",
+			headSize: "65px",
+			headLeft: "7px",
+			headTop: "5px",
+			img: "static/img/faces/kevin.png"
+		});
+		
+		var melissa = new Jay.StickFigure({
+			name: "Melissa_Mendel",
+			leftPos: "100px",
+			topPos: "300px",
+			headSize: "70px",
+			headLeft: "10px",
+			headTop: "10px",
+			img: "static/img/faces/melissa.png"
+		});
+		
+		var marc = new Jay.StickFigure({
+			name: "Marc_Galens",
+			leftPos: "100px",
+			topPos: "350px",
+			headSize: "58px",
+			headLeft: "10px",
+			headTop: "5px",
+			img: "static/img/faces/marcgalens.png"
+		});
+		
+		var mark = new Jay.StickFigure({
+			name: "Mark_Roblat",
+			leftPos: "100px",
+			topPos: "400px",
+			headSize: "62px",
+			headLeft: "10px",
+			headTop: "5px",
+			img: "static/img/faces/mark.png"
+		});
+		
+		var mike = new Jay.StickFigure({
+			name: "Michael_Downs",
+			leftPos: "100px",
+			topPos: "450px",
+			headSize: "62px",
+			headLeft: "10px",
+			headTop: "5px",
+			img: "static/img/faces/mikedowns.png"
+		});
+		
+		var russell = new Jay.StickFigure({
+			name: "Russell_Barry",
+			leftPos: "100px",
+			topPos: "500px",
+			headSize: "68px",
+			headLeft: "10px",
+			headTop: "5px",
+			img: "static/img/faces/russell.png"
+		});
+		
+		var tony = new Jay.StickFigure({
+			name: "Tony_Paruszewski",
+			leftPos: "100px",
+			topPos: "550px",
+			headSize: "68px",
+			headLeft: "10px",
+			headTop: "5px",
+			img: "static/img/faces/tony.png"
+		});
+		
+		var lee = new Jay.StickFigure({
+			name: "Lee_Freund",
+			leftPos: "100px",
+			topPos: "600px",
+			headSize: "60px",
+			headLeft: "10px",
+			headTop: "10px",
+			img: "static/img/faces/lee.png"
+		});
+		
+		figure_map = {
+			"Ashwin_Pampati": ashwin,
+			"Cori_Retblatt": cori,
+			"Danielle_Reiter": danielle,
+			"Evan_Hsieh": evan, 
+			"Jeff_Valente": jeff,
+			"Jeremy_Bloom": jeremy, 
+			"Kevin_Gianatiempo": kevin,
+			"Lee_Freund": lee, 
+			"Marc_Galens": marc, 
+			"Mark_Rotblat": mark,
+			"Melissa_Mandel": melissa,
+			"Michael_Downs": mike,
+			"Russell_Barry": russell,
+			"Tony_Paruszewski": tony
+		};
+		
 		createCountDown();
 	});
 	
@@ -356,6 +351,10 @@
 		setInterval(function(){
 			$(".moving-bg").one(transitionEnd, keep);
 		}, 5000);
+		for(var person in data){
+			var left = "500px";
+			figure_map[person].move(left); 
+		}
 	}
 	
 	function keep(){

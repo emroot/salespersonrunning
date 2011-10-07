@@ -26,29 +26,35 @@
 				bottom: 0,
 				left: 0
 			}
+			this.duration = 10000;
 			if(options)
 				$.extend(true, this.settings, options);
 			
-			this.$element = $("<div>").addClass("jay-stickfigure").css({
-				left: this.settings.left,
-				bottom: this.settings.bottom
-			});	
+			this.$element = $("<div>").addClass("jay-stickfigure");
 			this.$head = $("<img>").addClass("jay-stickfigure-head").attr("src", this.settings.img);
+			this.$head.css("width", this.settings.headSize);
+			this.$head.css("left", this.settings.headLeft);
+			this.$head.css("top", this.settings.headTop);
 			this.$body = $("<div>").addClass("jay-stickfigure-body");
-			
+											
 			this.leftArm = new Arm(this.$element, "left");
 			this.rightArm = new Arm(this.$element, "right");
 			this.leftLeg = new Leg(this.$element, "left");
 			this.rightLeg = new Leg(this.$element, "right");
 			
 			this.$element.append(this.$head, this.$body, this.leftArm, this.rightArm, this.leftLeg, this.rightLeg);
+			this.$element.css("left", this.settings.leftPos);
+			this.$element.css("top", this.settings.topPos);
 			//$this.$backdrop.one(transitionEnd, removeElement);
 			
 			this.$body = $(document.body);
 			this.$body.append(this.$element);
 		},
-		run: function(){
-			
+		move: function(left){
+			this.settings.leftPos = left;
+			this.$element.animate({
+				left: this.settings.leftPos
+			}, this.duration);
 		}
 	});
 	
